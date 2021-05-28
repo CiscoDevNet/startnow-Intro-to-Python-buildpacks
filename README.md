@@ -30,7 +30,7 @@ ___
 1. Build your app:
 
     ```bash
-    ➜  intro-to-python-buildpacks git:(main) ✗ tree -L 2
+    ➜  startnow-Intro-to-Python-buildpacks git:(main) ✗ tree -L 2
     .
     ├── LICENSE
     ├── Procfile
@@ -38,7 +38,14 @@ ___
     ├── __init__.py
     ├── app
     │   ├── __init__.py
-    │   └── aci_conn.py
+    │   ├── aci_conn.py
+    │   └── aci_webex.py
+    ├── cards
+    │   └── card.json
+    ├── images
+    │   ├── devi.jpeg
+    │   ├── image.png
+    │   └── results.png
     ├── main.py
     ├── requirements.txt
     ├── tenant_log.txt
@@ -60,7 +67,7 @@ ___
     pack --version
     ```
 
-5. Now create the default builder that will be used for packeto. A builder includes the buildpacks and everything we need like our environment for building our python app.
+5. Create the default builder that will be used for packeto. A builder includes the buildpacks and everything we need like our environment for building our python app.
 
     ```bash
     pack config default-builder paketobuildpacks/builder:full
@@ -92,13 +99,44 @@ ___
 
     ![image](./images/image.png "Docker image")
 
-9. Last thing to do is run our app:
+9. It's time to run our app:
 
     ```bash
     docker run myaciapp
     ```
 
     ![Results](./images/results.png "Myapp Results")
+
+10. Our app gives us the ability to pass in command line arguments when we run our docker container. This gives up the ability to changes our ACI login params as well as provide our `webex_token` and the name of our `webex_room` to send out aci status update message.
+
+    ```bash
+    ➜  startnow-Intro-to-Python-buildpacks git:(main) ✗ docker run \
+    > -e webex_token="OWNlMjFhNGMtOG2cae0e10f" \
+    > -e webex_room="DuAn AciDemo Room" \
+    > myaciapp
+    ```
+
+    ```bash
+    (venv) ➜  startnow-Intro-to-Python-buildpacks git:(main) ✗ python main.py --help  
+    usage: main.py [-h] [--url URL] [--username USERNAME] [--password PASSWORD]
+                [--webex_token WEBEX_TOKEN] [--webex_room WEBEX_ROOM]
+
+    Arguments: url, username, password, webex_token, webex_room
+
+    optional arguments:
+    -h, --help            show this help message and exit
+    --url URL             Optional argument to pass url or ip of APIC Default:
+                            'https://sandboxapicdc.cisco.com'
+    --username USERNAME   Optional argument to pass username for APIC user
+                            Default: 'admin'
+    --password PASSWORD   Optional argument to pass password for FMC user
+                            Default: 'ciscopsdt'
+    --webex_token WEBEX_TOKEN
+                            Optional argument to pass webex api token
+    --webex_room WEBEX_ROOM
+                            Optional argument to pass webex room name ***NOTE***
+                            arg must be passed with token
+    ```
 
 ___
 

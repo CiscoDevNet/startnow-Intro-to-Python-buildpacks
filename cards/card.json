@@ -1,0 +1,150 @@
+[
+    {
+        "contentType": "application/vnd.microsoft.card.adaptive",
+        "content":
+
+{
+"type": "AdaptiveCard",
+"body": [
+    {
+        "type": "ColumnSet",
+        "columns": [
+            {
+                "type": "Column",
+                "items": [
+                    {
+                        "type": "Image",
+                        "style": "Person",
+                        "url": "https://raw.githubusercontent.com/kiskander/assets/main/mask-icon-01.jpg",
+                        "size": "Medium",
+                        "height": "50px"
+                    }
+                ],
+                "width": "auto"
+            },
+            {
+                "type": "Column",
+                "items": [
+                    {
+                        "type": "TextBlock",
+                        "text": "Cisco DNA Center",
+                        "weight": "Lighter",
+                        "color": "Accent"
+                    },
+                    {
+                        "type": "TextBlock",
+                        "weight": "Bolder",
+                        "text": "Contact Tracing",
+                        "horizontalAlignment": "Left",
+                        "wrap": true,
+                        "color": "Light",
+                        "size": "Large",
+                        "spacing": "Small"
+                    }
+                ],
+                "width": "stretch"
+            }
+        ]
+    },
+    {
+        "type": "TextBlock",
+        "text": "Fill in the form below to generate a report based on an identified Pandemic Positive Employee.",
+        "wrap": true
+    },
+    {
+        "type": "TextBlock",
+        "text": "Username:",
+        "wrap": true,
+        "weight": "Bolder",
+        "color": "Attention"
+    },
+    {
+        "type": "Input.Text",
+        "style": "text",
+        "id": "username",
+        "placeholder": "Enter a valid username",
+        "spacing": "Small",
+        "value": "kevinm"
+    },
+    {
+        "type": "TextBlock",
+        "text": "Select number of days to trace:",
+        "weight": "Bolder",
+        "color": "Attention",
+        "horizontalAlignment": "Left",
+        "wrap": true
+    },
+    {
+        "type": "Input.Number",
+        "id": "report_days",
+        "placeholder": "Pick number of days between 1-14",
+        "spacing": "Small",
+        "min": 0,
+        "max": 14,
+        "value": 14
+    },
+    {
+        "type": "TextBlock",
+        "text": "Enter potential exposure time (min):",
+        "wrap": true,
+        "weight": "Bolder",
+        "color": "Attention"
+    },
+    {
+        "type": "Input.ChoiceSet",
+        "id": "exposure_time",
+        "placeholder": "Select 5, 10 or 15 minutes",
+        "spacing": "Small",
+        "min": 0,
+        "max": 15,
+        "choices": [
+            {
+                "title": "5 Min",
+                "value": "5"
+            },
+            {
+                "title": "10 Min",
+                "value": "10"
+            },
+            {
+                "title": "15 min",
+                "value": "15"
+            }
+        ],
+        "value": "15"
+    },
+    {
+        "type": "TextBlock",
+        "text": "Additional Notes:",
+        "wrap": true,
+        "weight": "Bolder",
+        "color": "Attention"
+    },
+    {
+        "type": "Input.Text",
+        "style": "text",
+        "id": "notes",
+        "placeholder": "Attach additional Notes to the final report",
+        "isMultiline": true
+    },
+    {
+        "type": "ActionSet",
+        "actions": [
+            {
+                "type": "Action.Submit",
+                "title": "Generate Report",
+                "data": {
+                    "subscribe": true
+                },
+                "id": "submit"
+            }
+        ],
+        "horizontalAlignment": "Left",
+        "spacing": "None"
+    }
+],
+"$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+"version": "1.2"
+}
+    }
+]
