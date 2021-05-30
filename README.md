@@ -1,6 +1,6 @@
-# startnow-Intro-to-Python-buildpacks
+# StartNow - Intro to Python Buildpacks
 
-This repo walks through the basics of using a python build pack to build your docker containers.
+This repo walks through the basics of using a python buildpack to build and maintain your docker containers.
 
 This app leverages [buildpack.io](https://registry.buildpacks.io/searches/python) and the Cisco DevNet [ACI Always On Sandbox](https://devnetsandbox.cisco.com/RM/Topology) to gather the FabricOverallHealth and also verify Tenants in ACI.
 
@@ -12,7 +12,7 @@ ___
 
 ## Why use buildpacks
 
-Building and maintaining a `Dockerfile` can be a pain. Most network engineers just want to get their app up and running without worrying about the things they don't need to.
+Building and maintaining a `Dockerfile` can be a pain. Most network engineers just want to get their app up and running without worrying about the things they don't need to know.
 
 This is where buildpacks come in because they remove the pain of building a container like:
 
@@ -23,11 +23,13 @@ This is where buildpacks come in because they remove the pain of building a cont
 They give you the ability to containerize your entire app in as little as 1 command. The buildpack will handle the version of python that will be used along with installing all of the dependencies from the requirements.txt file.
 
 NOW THATS SWEET!
+
+>I must state that there is value in understanding what is going on under the hood of a docker container. Especially if you are serious about DevOps! Here's a great 3 part series on [Understanding Container Images](https://blogs.cisco.com/developer/container-image-layers-1)
 ___
 
 ## How To Get Started
 
-1. Build your app:
+1. The first thing we need to do is build our python app.
 
     ```bash
     ➜  startnow-Intro-to-Python-buildpacks git:(main) ✗ tree -L 2
@@ -51,17 +53,19 @@ ___
     ├── tenant_log.txt
     ```
 
-    >NOTE: In this repo we have all the files needed to containerize our python app.
+    >NOTE: In this repo we have all the files needed to containerize our python app. Although here we are using Python buildpack supports several other languages including Ruby, Python, Node.js, PHP, Go, Java, Scala, and Clojure. You also have ability to create your own custom [buildpacks](https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/).
 
-2. [Install docker](https://hub.docker.com/search?type=edition&offering=community): This is needed to run your app once its containerized.
+2. [Install docker](https://hub.docker.com/search?type=edition&offering=community): This is needed to run your app once its containerized.  
 
-3. Once docker is installed we have to then install the `pack CLI` tool to build our containers from buildpack
+3. Once docker is installed we have to then install the `pack CLI` tool to build our containers from buildpack.
 
-    >NOTE: Pack is maintained by the Cloud Native Buildpacks project to support the use of buildpack
+    A link has been provided for you to follow the steps for your specific host.
 
     https://buildpacks.io/docs/tools/pack/
 
-4. After installation verify the installed `pack CLI` version
+    >NOTE: Pack is maintained by the Cloud Native Buildpacks project to support the use of buildpack.
+
+4. After installation verify the installed `pack CLI` version.
 
     ```bash
     pack --version
@@ -73,9 +77,9 @@ ___
     pack config default-builder paketobuildpacks/builder:full
     ```
 
-    >You can use `pack builder suggest` to view a list of suggested builders
+    >You can use the command `pack builder suggest` to view a list of suggested builders.
 
-6. Before we containerize our app we need to create a file in our root directory called `Procfile`. Here is where we add our "process type" i.e. `web, worker, urgentworker, clock` and so on and then we enter our command argument that should be executed on startup.
+6. Before we containerize our app we need to create a file in our root directory called `Procfile`. This file will be used to tell buildpack which command to execute when our app is run.
 
     ```bash
     web: python main.py
@@ -83,7 +87,7 @@ ___
 
     For more information on the [Procfile](https://devcenter.heroku.com/articles/procfile)
 
-7. Now lets build the app using the latest python build pack
+7. Now lets build the app using the latest python build pack.
 
     ```bash
     pack build myaciapp --buildpack paketo-community/python@0.4.1
@@ -99,6 +103,8 @@ ___
 
     ![image](./images/image.png "Docker image")
 
+    >Notice that docker is still used to manage our app and images after they are built.
+
 9. It's time to run our app:
 
     ```bash
@@ -107,7 +113,9 @@ ___
 
     ![Results](./images/results.png "Myapp Results")
 
-10. Our app gives us the ability to pass in command line arguments when we run our docker container. This gives up the ability to changes our ACI login params as well as provide our `webex_token` and the name of our `webex_room` to update a webex room.
+10. BONUS: This app has the ability to pass in command line arguments when we run our docker container. There are several arguments that are accepted like ACI login params as well as we can provide our `webex_token` and the name of a `webex_room` to send a webex adaptive card update to. Check out the example below:
+
+    >NOTE: To obtain a valid Webex Token: https://developer.webex.com/docs/api/getting-started
 
     ```bash
     ➜  startnow-Intro-to-Python-buildpacks git:(main) ✗ docker run \
@@ -141,6 +149,7 @@ ___
     ```
 
     >To learn more about using Adaptive Cards in webex: [https://developer.webex.com/docs/api/guides/cards](https://developer.webex.com/docs/api/guides/cards)
+
 ___
 
 ## Notes
