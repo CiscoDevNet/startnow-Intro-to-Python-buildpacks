@@ -2,7 +2,7 @@
 
 This repo walks through the basics of using a python build pack to build your docker containers.
 
-This app leverages `https://registry.buildpacks.io/searches/python` and the Cisco DevNet [ACI Always On Sandbox](https://devnetsandbox.cisco.com/RM/Topology) to gather FabricOverallHealth and also verify Tenants in ACI.
+This app leverages [buildpack.io](https://registry.buildpacks.io/searches/python) and the Cisco DevNet [ACI Always On Sandbox](https://devnetsandbox.cisco.com/RM/Topology) to gather the FabricOverallHealth and also verify Tenants in ACI.
 
 To sign up for DevNet: [Start Now](http://cs.co/startnowduan)
 
