@@ -5,8 +5,6 @@ Using Buildpacks to simplify building docker containers
 
 ## Business Case
 
-=====================================
-
 This repo walks through the basics of using a python buildpack to build and maintain your docker containers.
 
 Building and maintaining a `Dockerfile` can be a pain. Most network engineers just want to get their app up and running without worrying about the things they don't need to know.
