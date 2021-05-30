@@ -107,7 +107,7 @@ ___
 
     ![Results](./images/results.png "Myapp Results")
 
-10. Our app gives us the ability to pass in command line arguments when we run our docker container. This gives up the ability to changes our ACI login params as well as provide our `webex_token` and the name of our `webex_room` to send out aci status update message.
+10. Our app gives us the ability to pass in command line arguments when we run our docker container. This gives up the ability to changes our ACI login params as well as provide our `webex_token` and the name of our `webex_room` to update a webex room.
 
     ```bash
     ➜  startnow-Intro-to-Python-buildpacks git:(main) ✗ docker run \
@@ -115,6 +115,8 @@ ___
     > -e webex_room="DuAn AciDemo Room" \
     > myaciapp
     ```
+
+    ![image](./images/card_result.png "Webex Message")
 
     ```bash
     (venv) ➜  startnow-Intro-to-Python-buildpacks git:(main) ✗ python main.py --help  
@@ -138,6 +140,7 @@ ___
                             arg must be passed with token
     ```
 
+    >To learn more about using Adaptive Cards in webex: [https://developer.webex.com/docs/api/guides/cards](https://developer.webex.com/docs/api/guides/cards)
 ___
 
 ## Notes

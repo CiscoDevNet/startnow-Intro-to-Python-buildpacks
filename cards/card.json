@@ -2,149 +2,146 @@
     {
         "contentType": "application/vnd.microsoft.card.adaptive",
         "content":
-
-{
-"type": "AdaptiveCard",
-"body": [
-    {
-        "type": "ColumnSet",
-        "columns": [
-            {
-                "type": "Column",
+        {
+            "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+            "type": "AdaptiveCard",
+            "version": "1.0",
+            "body": [
+              {
+                "type": "Container",
                 "items": [
-                    {
-                        "type": "Image",
-                        "style": "Person",
-                        "url": "https://raw.githubusercontent.com/kiskander/assets/main/mask-icon-01.jpg",
-                        "size": "Medium",
-                        "height": "50px"
-                    }
-                ],
-                "width": "auto"
-            },
-            {
-                "type": "Column",
+                  {
+                    "type": "TextBlock",
+                    "text": "StartNow-Intro-to-Python-Buildpacks",
+                    "weight": "bolder",
+                    "size": "medium"
+                  },
+                  {
+                    "type": "ColumnSet",
+                    "columns": [
+                      {
+                        "type": "Column",
+                        "width": "auto",
+                        "items": [
+                          {
+                            "type": "Image",
+                            "url": "https://avatars.githubusercontent.com/u/8827988?s=60&v=4",
+                            "size": "small",
+                            "style": "person"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "Column",
+                        "width": "stretch",
+                        "items": [
+                          {
+                            "type": "TextBlock",
+                            "text": "Du'An Lightfoot",
+                            "weight": "bolder",
+                            "wrap": true
+                          },
+                          {
+                            "type": "TextBlock",
+                            "spacing": "none",
+                            "text": "Created {{DATE(2021-05-29T06:08:39Z, SHORT)}}",
+                            "isSubtle": true,
+                            "wrap": true
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "Container",
                 "items": [
+                  {
+                    "type": "TextBlock",
+                    "text": "This is a status update for the DevNet Always On Sandbox. If you are reading this you successfully implemented the `startnow-Intro-to-Python-buildpacks app`",
+                    "wrap": true
+                  },
+                  {
+                    "type": "FactSet",
+                    "facts": [
+                      {
+                        "title": "Board: ",
+                        "value": "Admin"
+                      },
+                      {
+                        "title": "List:",
+                        "value": "Backlog"
+                      },
+                      {
+                        "title": "Assigned to:",
+                        "value": "Test"
+                      },
+                      {
+                        "title": "Due date:",
+                        "value": "Not set"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "ColumnSet",
+                "columns": [
                     {
-                        "type": "TextBlock",
-                        "text": "Cisco DNA Center",
-                        "weight": "Lighter",
-                        "color": "Accent"
-                    },
-                    {
-                        "type": "TextBlock",
-                        "weight": "Bolder",
-                        "text": "Contact Tracing",
-                        "horizontalAlignment": "Left",
-                        "wrap": true,
-                        "color": "Light",
-                        "size": "Large",
-                        "spacing": "Small"
+                        "type": "Column",
+                        "width": "stretch",
+                        "items": [
+                            {
+                                "type": "TextBlock",
+                                "text": "DevNet Sandbox ACI Tenants",
+                                "horizontalAlignment": "Left",
+                                "spacing": "None",
+                                "size": "Large",
+                                "color": "Attention",
+                                "wrap": true
+                            },
+                            {
+                                "type": "TextBlock",
+                                "text": "Tenant-1",
+                                "horizontalAlignment": "Left",
+                                "spacing": "None",
+                                "size": "small",
+                                "wrap": true
+                            }
+                        ]
                     }
-                ],
-                "width": "stretch"
-            }
-        ]
-    },
-    {
-        "type": "TextBlock",
-        "text": "Fill in the form below to generate a report based on an identified Pandemic Positive Employee.",
-        "wrap": true
-    },
-    {
-        "type": "TextBlock",
-        "text": "Username:",
-        "wrap": true,
-        "weight": "Bolder",
-        "color": "Attention"
-    },
-    {
-        "type": "Input.Text",
-        "style": "text",
-        "id": "username",
-        "placeholder": "Enter a valid username",
-        "spacing": "Small",
-        "value": "kevinm"
-    },
-    {
-        "type": "TextBlock",
-        "text": "Select number of days to trace:",
-        "weight": "Bolder",
-        "color": "Attention",
-        "horizontalAlignment": "Left",
-        "wrap": true
-    },
-    {
-        "type": "Input.Number",
-        "id": "report_days",
-        "placeholder": "Pick number of days between 1-14",
-        "spacing": "Small",
-        "min": 0,
-        "max": 14,
-        "value": 14
-    },
-    {
-        "type": "TextBlock",
-        "text": "Enter potential exposure time (min):",
-        "wrap": true,
-        "weight": "Bolder",
-        "color": "Attention"
-    },
-    {
-        "type": "Input.ChoiceSet",
-        "id": "exposure_time",
-        "placeholder": "Select 5, 10 or 15 minutes",
-        "spacing": "Small",
-        "min": 0,
-        "max": 15,
-        "choices": [
-            {
-                "title": "5 Min",
-                "value": "5"
-            },
-            {
-                "title": "10 Min",
-                "value": "10"
-            },
-            {
-                "title": "15 min",
-                "value": "15"
-            }
-        ],
-        "value": "15"
-    },
-    {
-        "type": "TextBlock",
-        "text": "Additional Notes:",
-        "wrap": true,
-        "weight": "Bolder",
-        "color": "Attention"
-    },
-    {
-        "type": "Input.Text",
-        "style": "text",
-        "id": "notes",
-        "placeholder": "Attach additional Notes to the final report",
-        "isMultiline": true
-    },
-    {
-        "type": "ActionSet",
-        "actions": [
-            {
-                "type": "Action.Submit",
-                "title": "Generate Report",
-                "data": {
-                    "subscribe": true
-                },
-                "id": "submit"
-            }
-        ],
-        "horizontalAlignment": "Left",
-        "spacing": "None"
-    }
-],
-"$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-"version": "1.2"
-}
+                ]
+            }  
+            ],
+            "actions": [
+              {
+                "type": "Action.ShowCard",
+                "title": "Comment",
+                "card": {
+                  "type": "AdaptiveCard",
+                  "body": [
+                    {
+                      "type": "Input.Text",
+                      "id": "comment",
+                      "isMultiline": true,
+                      "placeholder": "Enter your comment"
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": "Action.Submit",
+                      "title": "OK"
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "Action.OpenUrl",
+                "title": "StartNow",
+                "url": "http://cs.co/startnowduan"
+              }
+            ]
+          }
     }
 ]

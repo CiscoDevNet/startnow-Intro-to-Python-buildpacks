@@ -30,7 +30,7 @@ def main(url, username, password, webex_token=None, webex_room=None):
     tenant_count = len(tenants)
     health = aci.get_aci_health()
     old_tenants = get_old_tenant()
-    webex_card = create_webex_card()
+    webex_card = create_webex_card(aci.username, tenants, tenant_count, health,old_tenants)
     if webex_token:
         token = webex.get_webex_token(webex_token)
         webex.send_webex_message(token, webex_room=webex_room, webex_card=webex_card)
@@ -81,15 +81,69 @@ def get_aci_stats(name, tenant_count, tenants, health, old_tenants):
     print(f"- Tentant Count: {tenant_count}")
     print("#" * 44 + "\n")
 
-def create_webex_card():
+def create_webex_card(aci_username, tenants, tenant_count, health, old_tenants):
     """
     Method creates adaptive card for webex message
-        return: Webex card message
+        Arguments:
+            aci_username (str): APIC username
+            tenants (dict): ACI tenant dict
+            tenant_count (int): Number of ACI tenants
+            health (dict): ACI health dict
+        return: Adaptive card Dict
         rtype: dict
     """
+    now = datetime.datetime.now()
+    fabric_health = [
+        {
+            "title": "Logged by :",
+            "value": str(aci_username)
+        },
+        {
+            "title": "Health Avg : ",
+            "value": str(f"{health['imdata'][0]['fabricOverallHealthHist5min']['attributes']['healthAvg']}")
+
+        },
+        {
+           "title": "Health Max : ",
+           "value": str(f"{health['imdata'][0]['fabricOverallHealthHist5min']['attributes']['healthMax']}")
+        },
+        {
+            "title": "Health Min : ",
+            "value": str(f"{health['imdata'][0]['fabricOverallHealthHist5min']['attributes']['healthMin']}")
+        },
+        {
+            "title": "Tenant Count :",
+            "value": str(tenant_count)
+        }
+        ]
+    tenant_list = [
+        {
+            "type": "TextBlock",
+            "text": "DevNet Sandbox ACI Tenants",
+            "horizontalAlignment": "Left",
+            "spacing": "None",
+            "size": "Large",
+            "color": "Attention",
+            "wrap": True
+        }
+    ]
+    today = f'Created {now.strftime("%d-%B-%Y")}'
     with open("./cards/card.json") as temp_v:
         cards = json.load(temp_v)
-    return cards
+        cards[0]['content']['body'][1]['items'][1]['facts'] = fabric_health
+        cards[0]['content']['body'][0]['items'][1]['columns'][1]['items'][1]['text'] = today
+        for i in tenants:
+            tenant_list.append({
+                                "type": "TextBlock",
+                                "text": str(i['fvTenant']['attributes']['name']),
+                                "horizontalAlignment": "Left",
+                                "spacing": "None",
+                                "size": "medium",
+                                "wrap": True
+                            }
+                )
+        cards[0]['content']['body'][2]['columns'][0]['items'] = tenant_list
+        return cards
 
 def get_old_tenant():
     """
@@ -117,7 +171,7 @@ def get_date():
         return: Date/time '03-05-2021 12:04'
         rtype: str
     """
-    return datetime.datetime.now().strftime('%m-%d-%Y %H:%M')
+    return datetime.datetime.now().strftime("%d-%B-%Y")
 
 def validate_url(url):
     """
