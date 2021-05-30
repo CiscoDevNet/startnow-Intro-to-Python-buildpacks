@@ -1,6 +1,5 @@
 # StartNow - Intro to Python Cloud Native Buildpacks
 
-=====================================
 Using Buildpacks to simplify building docker containers
 
 ## Business Case
