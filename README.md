@@ -1,5 +1,7 @@
 # StartNow - Intro to Python Buildpacks
 
+[![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/CiscoDevNet/startnow-Intro-to-Python-buildpacks)
+
 This repo walks through the basics of using a python buildpack to build and maintain your docker containers.
 
 This app leverages [buildpack.io](https://registry.buildpacks.io/searches/python) and the Cisco DevNet [ACI Always On Sandbox](https://devnetsandbox.cisco.com/RM/Topology) to gather the FabricOverallHealth and also verify Tenants in ACI.
