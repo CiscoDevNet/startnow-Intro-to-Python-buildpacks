@@ -31,7 +31,13 @@ ___
 
 ## How To Get Started
 
-1. The first thing we need to do is build our python app.
+1. The first thing we need to do is clone the `StartNow - Intro to Python Buildpacks` repo and then change in it's directory to build our python app.
+
+    ```bash
+    git clone  https://github.com/CiscoDevNet/startnow-Intro-to-Python-buildpacks.git && cd startnow-Intro-to-Python-buildpacks
+    ```
+
+    Here is the app directory structure.
 
     ```bash
     ➜  startnow-Intro-to-Python-buildpacks git:(main) ✗ tree -L 2
